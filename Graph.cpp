@@ -10,9 +10,10 @@ Graph<T>::Graph(int vertices, bool directed)
 // Add an edge
 template <typename T>
 void Graph<T>::addEdge(int u, int v, T weight) {
-    adjList[u].push_back({v, weight});
+    //does it matter that add adds to the front instead of the back?
+    adjList[u].add({v, weight});
     if (!directed) {
-        adjList[v].push_back({u, weight});
+        adjList[v].add({u, weight});
     }
 }
 
@@ -27,7 +28,8 @@ template <typename T>
 void Graph<T>::printGraph() const {
     for (int i = 0; i < V; ++i) {
         cout << "Vertex " << i << ": ";
-        for (const auto& neighbor : adjList[i]) {
+        vector<pair<int, T>> neighbors = adjList[i].toVector();
+        for (const auto& neighbor : neighbors) {
             cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
         }
         cout << endl;
@@ -36,7 +38,7 @@ void Graph<T>::printGraph() const {
 
 // Get neighbors of a vertex
 template <typename T>
-const list<pair<int, T>>& Graph<T>::getNeighbors(int vertex) const {
+const LinkedBag<pair<int, T>>& Graph<T>::getNeighbors(int vertex) const {
     return adjList[vertex];
 }
 
@@ -56,7 +58,8 @@ void Graph<T>::DFTRecursive(int v, vector<bool>& visited) const {
     cout << v << " "; // Visit the current vertex
 
     // Recur for all the vertices adjacent to this vertex
-    for (const auto& neighbor : adjList[v]) {
+    vector<pair<int, T>> neighbors = adjList[v].toVector();
+    for (const auto& neighbor : neighbors) {
         if (!visited[neighbor.first]) {
             DFTRecursive(neighbor.first, visited);
         }
