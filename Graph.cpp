@@ -1,4 +1,6 @@
 #include "Graph.h"
+#include <iostream>
+
 
 // Constructor
 template <typename T>
@@ -10,6 +12,12 @@ Graph<T>::Graph(int vertices, bool directed)
 // Add an edge
 template <typename T>
 void Graph<T>::addEdge(int u, int v, T weight) {
+
+    //can't add a self edge
+    if(u == v) {
+        cout << "cant add self edge' "<< std::endl;
+        return;
+    }
     //does it matter that add adds to the front instead of the back?
     adjList[u].add({v, weight});
     if (!directed) {
@@ -45,26 +53,29 @@ const LinkedBag<pair<int, T>>& Graph<T>::getNeighbors(int vertex) const {
 
 // DFS Traversal (Recursive approach)
 template <typename T>
-void Graph<T>::DFT(int start) const {
+void Graph<T>::DFT(int start, vector<User> users) const {
     vector<bool> visited(V, false); // To keep track of visited vertices
-    DFTRecursive(start, visited);
+    DFTRecursive(start, visited, users);
     cout << endl;
 }
 
 // Utility function for DFS (Recursive)
 template <typename T>
-void Graph<T>::DFTRecursive(int v, vector<bool>& visited) const {
+void Graph<T>::DFTRecursive(int v, vector<bool>& visited, vector<User> users) const {
     visited[v] = true;
     cout << v << " "; // Visit the current vertex
+    cout << users[v] << endl;
 
     // Recur for all the vertices adjacent to this vertex
     vector<pair<int, T>> neighbors = adjList[v].toVector();
     for (const auto& neighbor : neighbors) {
         if (!visited[neighbor.first]) {
-            DFTRecursive(neighbor.first, visited);
+            DFTRecursive(neighbor.first, visited, users);
+            // cout<<neighbor.first<< std::endl;
         }
     }
 }
+
 
 // -----------------------------------------------------
 // Depth First Search (by username)

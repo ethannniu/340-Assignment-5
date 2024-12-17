@@ -6,6 +6,7 @@
 #include <list>
 #include <utility>  // For std::pair
 #include "LinkedBagDS/LinkedBag.h"
+#include "User.cpp"
 
 using namespace std;
 
@@ -29,8 +30,8 @@ public:
     const LinkedBag<pair<int, T>>& getNeighbors(int vertex) const;
 
     // Depth First Traversal
-    void DFT(int start) const;
-    void DFTRecursive(int v, vector<bool>& visited) const;
+    void DFT(int start, vector<User> users) const;
+    void DFTRecursive(int v, vector<bool>& visited, vector<User> users) const;
 
     // -----------------------------------------------------
     // Depth First Search (by username)

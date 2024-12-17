@@ -1,4 +1,6 @@
 // TO DO: #include needed standard libraries and your own libraries here
+#ifndef USERs__
+#define USERs__
 #include "User.h"
 #include <iostream>
 #include <string>
@@ -112,3 +114,4 @@ std::istream& operator>>(std::istream& stream, User& user) {
 
     return stream;
 }
+#endif
