@@ -65,6 +65,8 @@ int main() {
 	// Call DFT 
 	g.DFT(0, users);
 	// g.DFT(0, ...);
+	cout << boolalpha;
+	cout<< g.DFS(0, users, "Ethan")<< endl;
 
 
 	bool found = false;
