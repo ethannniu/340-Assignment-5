@@ -32,6 +32,8 @@ public:
     // Depth First Traversal
     void DFT(int start, vector<User> users) const;
     void DFTRecursive(int v, vector<bool>& visited, vector<User> users) const;
+    bool DFS(int start, vector<User> users, string search) const;
+    bool DFSRecursive(int v, vector<bool>& visited, vector<User> users, string search) const;
 
     // -----------------------------------------------------
     // Depth First Search (by username)

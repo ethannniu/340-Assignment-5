@@ -36,11 +36,11 @@ int main() {
 	// Add edges (userA, userB, weight)
 	// TO DO 
 	g.addEdge(1, 2, 9);
-	g.addEdge(3, 2, 5);
+	g.addEdge(3, 8, 5);
 	g.addEdge(7, 2, 3);
 	g.addEdge(7, 3, 5);
 	g.addEdge(3, 6, 6);
-	g.addEdge(9, 1, 1);
+	g.addEdge(9, 8, 1);
 	g.addEdge(4, 2, 7);
 	g.addEdge(6, 2, 9);
 	g.addEdge(8, 9, 4);

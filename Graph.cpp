@@ -76,6 +76,36 @@ void Graph<T>::DFTRecursive(int v, vector<bool>& visited, vector<User> users) co
     }
 }
 
+template <typename T>
+bool Graph<T>::DFS(int start, vector<User> users, string search) const {
+    vector<bool> visited(V, false); // To keep track of visited vertices
+    bool value = DFSRecursive(start, visited, users, search);
+    cout << endl;
+    return value;
+}
+
+template <typename T>
+bool Graph<T>::DFSRecursive(int v, vector<bool>& visited, vector<User> users, string search) const {
+    visited[v] = true;
+    cout << v << " "; // Visit the current vertex
+    cout << users[v] << endl;
+
+    if(users[v].getUsername() == search) {
+        return true;
+    }
+
+    // Recur for all the vertices adjacent to this vertex
+    vector<pair<int, T>> neighbors = adjList[v].toVector();
+    for (const auto& neighbor : neighbors) {
+        if (!visited[neighbor.first]) {
+            return DFSRecursive(neighbor.first, visited, users, search);
+            
+            // cout<<neighbor.first<< std::endl;
+        }
+    }
+    return false;
+}
+
 
 // -----------------------------------------------------
 // Depth First Search (by username)
